@@ -1,40 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <title>Registro de Disciplinas</title>
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
     <script src="app.js" type="module"></script>
 </head>
+
 <body class="align-center">
     <h1>Registros de Disciplinas</h1>
 
-    <div id="formulario">
-        
-        <form>
+    <section class="flex">
+
+        <div>
             <fieldset class="align-center">
 
                 <legend class="align-left">Registre uma nova disciplina:</legend>
 
                 <div class="align-left">
                     <label for="nome">Nome da Disciplina:</label>
-                    <input type="text" name="nome" id="nome">
+                    <input type="text" id="nome">
                 </div>
 
                 <div class="align-left">
                     <label for="nome">Nota da Disciplina:</label>
-                    <input type="text" name="nota" id="nota">
+                    <input type="text" id="nota">
                 </div>
 
                 <button type="submit" id="salvar">Salvar</button>
             </fieldset>
-        </form>
+        </div>
 
-    </div>
+        <div>
+            <table></table>
+        </div>
 
-    <div id="lista">
-        <table></table>
-    </div>
+    </section>
 
 </body>
+
 </html>

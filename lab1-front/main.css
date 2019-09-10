@@ -7,7 +7,7 @@ fieldset {
     border: 1px solid #A9A9A9;
     background: rgb(229, 226, 226);
     margin: 4em auto;
-    width: 35%;
+    width: 50%;
 }
 
 legend {
@@ -25,9 +25,7 @@ input {
 
 table {
     width: 600px;
-    border-collapse: separate;
     margin: 2em auto;
-    position: absolute;
 }
 
 th, td {
@@ -42,7 +40,7 @@ th {
     letter-spacing: 0.2em;
 }
 
-tr:hover {
+tr:not(:first-child):hover {
     background-color: #F5DEB3;
 }
 
@@ -53,15 +51,21 @@ table tr td button {
     font-size: 15px;
     border-radius: 8px;
 
-    -webkit-transition-duration: 0.3s;
-    -moz-transition-duration: 0.3s;
-    -o-transition-duration: 0.3s;
-    transition-duration: 0.3s;
+    -webkit-transition-duration: 0.4s;
+    -moz-transition-duration: 0.4s;
+    -o-transition-duration: 0.4s;
+    transition-duration: 0.4s;
 }
 
 table tr td button:hover {
     background-color: #8B0000;
     color: white;
+}
+
+.flex {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
 }
 
 .align-left {
@@ -70,15 +74,6 @@ table tr td button:hover {
 
 .align-center {
     text-align: center;
-}
-
-#delete-all {
-    clear: both;
-    text-align: left;
-}
-
-#formulario, #lista  {
-    float: left;
 }
 
 #salvar {
@@ -91,10 +86,10 @@ table tr td button:hover {
     border: 1px solid #555555;
     color: #fff;
 
-    -webkit-transition-duration: 0.3s;
-    -moz-transition-duration: 0.3s;
-    -o-transition-duration: 0.3s;
-    transition-duration: 0.3s;
+    -webkit-transition-duration: 0.4s;
+    -moz-transition-duration: 0.4s;
+    -o-transition-duration: 0.4s;
+    transition-duration: 0.4s;
 }
 
 #salvar:hover {
