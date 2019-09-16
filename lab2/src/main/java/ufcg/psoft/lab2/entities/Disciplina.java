@@ -18,7 +18,7 @@ public class Disciplina {
     private int likes;
 
     public Disciplina() {
-
+        super();
     }
 
     public Disciplina(long id, String nome, double nota) {
@@ -35,5 +35,41 @@ public class Disciplina {
         this.nota = nota;
         this.comentarios = comentarios;
         this.likes = likes;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public List<String> getComentarios() {
+        return comentarios;
+    }
+
+    public double getNota() {
+        return nota;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setNota(double nota) {
+        this.nota = nota;
+    }
+
+    public void setComentarios(List<String> comentarios) {
+        this.comentarios.addAll(comentarios);
+    }
+
+    public void setLike() {
+        this.likes++;
     }
 }
