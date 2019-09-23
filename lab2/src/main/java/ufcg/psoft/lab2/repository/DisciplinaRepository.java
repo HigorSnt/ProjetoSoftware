@@ -1,8 +1,8 @@
-package ufcg.psoft.lab2.repositories;
+package ufcg.psoft.lab2.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ufcg.psoft.lab2.entities.Disciplina;
+import ufcg.psoft.lab2.entities.disciplinas.Disciplina;
 
 import java.io.Serializable;
 
