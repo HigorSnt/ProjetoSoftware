@@ -16,7 +16,6 @@ public class Usuario {
     public Usuario() {
     }
 
-    @JsonCreator
     public Usuario(String email, String nome, String senha) {
         this.email = email;
         this.nome = nome;

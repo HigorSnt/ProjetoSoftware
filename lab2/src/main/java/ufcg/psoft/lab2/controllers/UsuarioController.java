@@ -21,7 +21,7 @@ public class UsuarioController {
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/auth/usuarios")
+    @DeleteMapping("/usuarios")
     public ResponseEntity<Usuario> removeUser(@RequestHeader("Authorization") String header) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }

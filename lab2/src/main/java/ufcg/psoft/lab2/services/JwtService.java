@@ -23,7 +23,7 @@ public class JwtService {
         return this.service.getUsuario(subject).isPresent();
     }
 
-    private String getTokenUser(String authorizationHeader) throws ServletException {
+    public String getTokenUser(String authorizationHeader) throws ServletException {
         if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
             throw new ServletException("Token inexistente ou mal formatado!");
         }

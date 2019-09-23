@@ -22,4 +22,11 @@ public class UsuarioService {
     public void addUser(Usuario usuario) {
         this.usuarioDAO.save(usuario);
     }
+
+    public Usuario deleteUser(String subject) {
+        Usuario u = this.usuarioDAO.findById(subject).get();
+        this.usuarioDAO.delete(u);
+
+        return u;
+    }
 }

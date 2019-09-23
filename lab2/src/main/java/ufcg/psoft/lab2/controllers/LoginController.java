@@ -4,12 +4,10 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ufcg.psoft.lab2.entities.usuarios.Usuario;
 import ufcg.psoft.lab2.entities.usuarios.dtos.UserEmailPassword;
+import ufcg.psoft.lab2.services.JwtService;
 import ufcg.psoft.lab2.services.UsuarioService;
 
 import javax.servlet.ServletException;
@@ -21,15 +19,17 @@ import java.util.Optional;
 public class LoginController {
 
     private final String TOKEN_KEY = "Xta1soF7UyJwk1VkecS89uh6HWEsimdi1hnsUDWz";
-    private UsuarioService service;
+    private UsuarioService usuarioService;
+    private JwtService jwtService;
 
-    public LoginController(UsuarioService service) {
-        this.service = service;
+    public LoginController(UsuarioService usuarioService, JwtService jwtService) {
+        this.usuarioService = usuarioService;
+        this.jwtService = jwtService;
     }
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> authenticate(@RequestBody UserEmailPassword user) throws ServletException {
-        Optional<Usuario> authUsuario = service.getUsuario(user.getEmail());
+        Optional<Usuario> authUsuario = usuarioService.getUsuario(user.getEmail());
 
         if (authUsuario.isEmpty()) {
             throw new ServletException("Usuário não existe!");
@@ -46,6 +46,18 @@ public class LoginController {
                 .compact();
 
         return new ResponseEntity(new LoginResponse(token), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/usuarios")
+    public ResponseEntity<Usuario> removeUser(@RequestHeader("Authorization") String header) {
+        try {
+            String subject = jwtService.getTokenUser(header);
+
+            return new ResponseEntity(this.usuarioService.deleteUser(subject), HttpStatus.OK);
+
+        } catch (ServletException e) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
     }
 
     private class LoginResponse {

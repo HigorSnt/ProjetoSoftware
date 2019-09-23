@@ -1,13 +1,14 @@
 package ufcg.psoft.lab2.entities.usuarios.dtos;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-
 public class UserEmailPassword {
 
     private String email;
     private String password;
 
-    @JsonCreator
+
+    public UserEmailPassword() {
+    }
+
     public UserEmailPassword(String email, String password) {
         this.email = email;
         this.password = password;

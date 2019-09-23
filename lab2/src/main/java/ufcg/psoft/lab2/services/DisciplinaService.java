@@ -32,9 +32,10 @@ public class DisciplinaService {
 
     @PostConstruct
     public void initDisciplinas() {
+        if (this.disciplinaDAO.count() > 0) return;
+
         ObjectMapper mapper = new ObjectMapper();
-        TypeReference<List<Disciplina>> typeReference = new TypeReference<List<Disciplina>>() {
-        };
+        TypeReference<List<Disciplina>> typeReference = new TypeReference<List<Disciplina>>() {};
         InputStream input = ObjectMapper.class.getResourceAsStream("/json/disciplinas.json");
 
         try {
