@@ -32,11 +32,11 @@ public class LoginController {
         Optional<Usuario> authUsuario = usuarioService.getUsuario(user.getEmail());
 
         if (authUsuario.isEmpty()) {
-            throw new ServletException("Usuário não existe!");
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
 
         if (!authUsuario.get().getSenha().equals(user.getPassword())) {
-            throw new ServletException("Senha incorreta!");
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
         }
 
         String token = Jwts.builder()
@@ -48,16 +48,18 @@ public class LoginController {
         return new ResponseEntity(new LoginResponse(token), HttpStatus.OK);
     }
 
-    @DeleteMapping("/usuarios")
-    public ResponseEntity<Usuario> removeUser(@RequestHeader("Authorization") String header) {
-        try {
-            String subject = jwtService.getTokenUser(header);
+    @DeleteMapping("/usuarios/{email}")
+    public ResponseEntity<Usuario> removeUser(@PathVariable String email,
+                                              @RequestHeader("Authorization") String header) throws ServletException {
 
-            return new ResponseEntity(this.usuarioService.deleteUser(subject), HttpStatus.OK);
-
-        } catch (ServletException e) {
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        if (header == null || !header.startsWith("Bearer ") ||
+                !this.jwtService.userHasPermission(header, email)) {
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
         }
+
+        String subject = this.jwtService.getTokenUser(header);
+
+        return new ResponseEntity(this.usuarioService.deleteUser(subject), HttpStatus.OK);
     }
 
     private class LoginResponse {
