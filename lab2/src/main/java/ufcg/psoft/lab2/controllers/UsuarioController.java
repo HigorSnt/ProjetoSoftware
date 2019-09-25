@@ -20,9 +20,4 @@ public class UsuarioController {
         this.service.addUser(usuario);
         return new ResponseEntity(HttpStatus.CREATED);
     }
-
-    @DeleteMapping("/usuarios")
-    public ResponseEntity<Usuario> removeUser(@RequestHeader("Authorization") String header) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-    }
 }
