@@ -1,4 +1,4 @@
-package ufcg.psoft.lab2.entities.disciplinas.dtos;
+package ufcg.psoft.lab2.entities.disciplines.dtos;
 
 public class DisciplineIdNameLikes {
 

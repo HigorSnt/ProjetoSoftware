@@ -3,37 +3,36 @@ package ufcg.psoft.lab2.controllers;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ufcg.psoft.lab2.entities.disciplinas.Disciplina;
-import ufcg.psoft.lab2.entities.disciplinas.dtos.*;
-import ufcg.psoft.lab2.services.DisciplinaService;
+import ufcg.psoft.lab2.entities.disciplines.Discipline;
+import ufcg.psoft.lab2.entities.disciplines.dtos.*;
+import ufcg.psoft.lab2.services.DisciplineService;
 
 import javax.servlet.ServletException;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-public class DisciplinaController {
+public class DisciplineController {
 
-    private DisciplinaService service;
+    private DisciplineService service;
 
-    public DisciplinaController(DisciplinaService service) {
-        super();
+    public DisciplineController(DisciplineService service) {
         this.service = service;
     }
 
     @GetMapping("/api/disciplinas")
-    public ResponseEntity<List<DisciplinaIdNome>> getDisciplinas() {
-        return new ResponseEntity(this.service.getDisciplinas(), HttpStatus.OK);
+    public ResponseEntity<List<DisciplineIdName>> getDisciplines() {
+        return new ResponseEntity(this.service.getDisciplines(), HttpStatus.OK);
     }
 
     @GetMapping("/api/disciplinas/{id}")
-    public ResponseEntity<Disciplina> getDisciplina(@PathVariable Long id) {
+    public ResponseEntity<Discipline> getDisciplina(@PathVariable Long id) {
         ResponseEntity response;
 
-        Optional<Disciplina> disciplina = this.service.getDisciplina(id);
+        Optional<Discipline> discipline = this.service.getDiscipline(id);
 
-        if (!disciplina.isEmpty()) {
-            response = new ResponseEntity(disciplina.get(), HttpStatus.OK);
+        if (!discipline.isEmpty()) {
+            response = new ResponseEntity(discipline.get(), HttpStatus.OK);
         } else {
             response = new ResponseEntity(HttpStatus.NOT_FOUND);
         }
@@ -69,12 +68,12 @@ public class DisciplinaController {
     }
 
     @GetMapping("/api/disciplinas/ranking/notas")
-    public ResponseEntity<List<Disciplina>> rankingByGrades() {
+    public ResponseEntity<List<Discipline>> rankingByGrades() {
         return new ResponseEntity(this.service.rankingByGrades(), HttpStatus.OK);
     }
 
     @GetMapping("/api/disciplinas/ranking/likes")
-    public ResponseEntity<List<Disciplina>> rankingByLikes() {
+    public ResponseEntity<List<Discipline>> rankingByLikes() {
         return new ResponseEntity(this.service.rankingByLikes(), HttpStatus.OK);
     }
 

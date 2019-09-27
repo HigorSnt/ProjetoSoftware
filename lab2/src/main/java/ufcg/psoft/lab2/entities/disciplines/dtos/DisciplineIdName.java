@@ -1,15 +1,16 @@
-package ufcg.psoft.lab2.entities.disciplinas.dtos;
+package ufcg.psoft.lab2.entities.disciplines.dtos;
 
-public class DisciplineIdNameGrade {
+public class DisciplineIdName {
 
     private Long id;
     private String name;
-    private Double grade;
 
-    public DisciplineIdNameGrade(Long id, String name, Double grade) {
+    public DisciplineIdName() {
+    }
+
+    public DisciplineIdName(Long id, String name) {
         this.id = id;
         this.name = name;
-        this.grade = grade;
     }
 
     public Long getId() {
@@ -26,13 +27,5 @@ public class DisciplineIdNameGrade {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Double getGrade() {
-        return grade;
-    }
-
-    public void setGrade(Double grade) {
-        this.grade = grade;
     }
 }

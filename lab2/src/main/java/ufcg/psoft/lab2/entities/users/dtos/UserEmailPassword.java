@@ -1,4 +1,4 @@
-package ufcg.psoft.lab2.entities.usuarios.dtos;
+package ufcg.psoft.lab2.entities.users.dtos;
 
 public class UserEmailPassword {
 

@@ -3,7 +3,7 @@ package ufcg.psoft.lab2.services;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureException;
 import org.springframework.stereotype.Service;
-import ufcg.psoft.lab2.entities.usuarios.Usuario;
+import ufcg.psoft.lab2.entities.users.User;
 
 import javax.servlet.ServletException;
 import java.util.Optional;
@@ -11,18 +11,18 @@ import java.util.Optional;
 @Service
 public class JwtService {
 
-    private UsuarioService usuarioService;
+    private UserService userService;
     private final int TOKEN_INDEX = 7;
     private final String TOKEN_KEY = "Xta1soF7UyJwk1VkecS89uh6HWEsimdi1hnsUDWz";
 
-    public JwtService(UsuarioService usuarioService) {
-        this.usuarioService = usuarioService;
+    public JwtService(UserService userService) {
+        this.userService = userService;
     }
 
     public boolean userHasPermission(String authorizationHeader, String email) throws ServletException {
         String subject = getTokenUser(authorizationHeader);
 
-        Optional<Usuario> optUsuario = this.usuarioService.getUsuario(subject);
+        Optional<User> optUsuario = this.userService.getUser(subject);
 
         return optUsuario.isPresent() && optUsuario.get().getEmail().equals(email);
     }
