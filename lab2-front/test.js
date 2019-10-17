@@ -48,14 +48,21 @@ describe('factory Turma', function () {
     before (async () => {
         d1 = disciplina('prog1', 'Programação 1', 4, []);
         t1 = turma(d1, "1");
-    })
+    });
 
     it ('deve criar turmas diferentes a cada invocação', function () {
         t2 = turma(d1, "1");
         t3 = turma(d1, "1");
-        console.log(t1)
         assert.notEqual(t1, t2);
         assert.notEqual(t1, t3);
         assert.notEqual(t2, t3);
-    })
+    });
+
+    it ('deve reter os dados da inicialização', function(){
+        assert.equal(d1, t1.get_disciplina());
+        assert.equal('1', t1.get_periodo());
+        assert.equal(null, t1.get_professor());
+        assert.deepStrictEqual([], t1.get_estudantes());
+        assert.equal('planejada', t1.get_status());
+    });
 })

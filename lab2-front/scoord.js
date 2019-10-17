@@ -27,37 +27,84 @@ function turma(disciplina, periodo) {
     let _disciplina = disciplina;
     let _periodo = periodo;
     let _status = situacao.P;
+    let _professor = null;
+    let _estudantes = [];
 
     t.get_disciplina = () => _disciplina;
     t.get_periodo = () => _periodo;
-    t.professor = null;
-    t.estudantes = [];
+    t.set_periodo = function (novo_periodo) {
+        _periodo = novo_periodo;
+    }
     
+    t.get_professor = () => _professor;
+    t.set_professor = function (professor) {
+        _professor = professor;
+    }
+    
+    t.get_estudantes = () => _estudantes;
+
     t.matricular_estudante = function (estudante) {
         if ((_status == situacao.P || _status == situacao.A) && 
-                !this.estudantes.includes(estudante)) {
-            this.estudantes.push(estudante);
+                !_estudantes.includes(estudante)) {
+            _estudantes.push(estudante);
         }
     }
 
     t.desmatricular_estudante = function (estudante) {
         if ((_status == situacao.P || _status == situacao.A) && 
-                !this.estudantes.includes(estudante)) {
-            this.estudantes.pop(estudante);
+                !_estudantes.includes(estudante)) {
+            _estudantes.pop(estudante);
         }
     }
 
-    Object.defineProperty(t, 'status', {
-        get: () => _status,
-        set: function (novo_status) {
-            let values = Object.values(situacao);
-            if (values.includes(novo_status)) {
-                _status = novo_status;
-            }
+    t.get_status = () => _status;
+    t.set_status = function (novo_status) {
+        let values = Object.values(situacao);
+        if (values.includes(novo_status)) {
+            _status = novo_status;
         }
-    });
+    }
 
     return t;
+}
+
+
+function professor(matricula, nome, email, cpf, url_foto) {
+    let _matricula = matricula;
+    let _nome = nome;
+    let _email = email;
+    let _cpf = cpf;
+    let _url_foto = url_foto;
+    let _turmas = [];
+
+    let p = {}
+
+    p.get_matricula = () => _matricula;
+
+    p.get_nome = () => _nome;
+    p.set_nome = function (novo_nome) {
+        _nome = novo_nome;
+    }
+
+    p.get_email = () => _email;
+    p.set_email = function (novo_email) {
+        _email = novo_email;
+    }
+
+    p.get_cpf = () => _cpf;
+
+    p.get_url_foto = () => _url_foto;
+    p.set_url_foto = function (nova_url) {
+        _url_foto = nova_url;
+    }
+
+    p.aloca_turma = function (turma) {
+        _turmas.push(turma);
+    }
+    p.turmas = function (semestre) {
+        return _turmas.filter((elemento) => semestre === elemento.get_periodo());
+    }
+    p.get_turmas = () => _turmas;
 }
 
 module.exports = {
