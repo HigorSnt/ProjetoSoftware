@@ -1,8 +1,9 @@
 let assert = require('assert');
 let disciplina = require('./scoord').disciplina;
+let turma = require('./scoord').turma;
 
 describe('factory Disciplina', function() {
-  let d0;
+    let d0;
 
     before(async () => {
         d0 = disciplina('prog1', 'Programação 1', 4, []);
@@ -38,3 +39,23 @@ describe('factory Disciplina', function() {
         assert.equal('prog1', d0.id());
     });
 });
+
+
+describe('factory Turma', function () {
+    let t1;
+    let d1;
+
+    before (async () => {
+        d1 = disciplina('prog1', 'Programação 1', 4, []);
+        t1 = turma(d1, "1");
+    })
+
+    it ('deve criar turmas diferentes a cada invocação', function () {
+        t2 = turma(d1, "1");
+        t3 = turma(d1, "1");
+        console.log(t1)
+        assert.notEqual(t1, t2);
+        assert.notEqual(t1, t3);
+        assert.notEqual(t2, t3);
+    })
+})
