@@ -9,7 +9,7 @@ function disciplina(id, nome, creditos, pre_requisito) {
     let _nome = nome;
 
     let d = {};
-    
+
     d.creditos = creditos;
     d.pre_requisitos = pre_requisito;
 
@@ -19,7 +19,7 @@ function disciplina(id, nome, creditos, pre_requisito) {
     d.set_nome = function (novo_nome) {
         _nome = novo_nome;
     }
-    
+
     return d;
 }
 
@@ -38,7 +38,7 @@ function turma(disciplina, periodo) {
     t.set_periodo = function (novo_periodo) {
         _periodo = novo_periodo;
     }
-    
+
     t.get_professor = () => _professor;
     t.set_professor = function (professor) {
         _professor = professor;
@@ -47,8 +47,8 @@ function turma(disciplina, periodo) {
     t.get_estudantes = () => _estudantes;
 
     t.matricular_estudante = function (estudante) {
-        if ((_status == situacao.P || _status == situacao.A) && 
-                !_estudantes.includes(estudante)) {
+        if ((_status == situacao.P || _status == situacao.A) &&
+            !_estudantes.includes(estudante)) {
             _estudantes.push(estudante);
         }
     }
@@ -165,7 +165,7 @@ function estudante(matricula, nome, email, cpf, url_foto) {
 
 
 module.exports = {
-    disciplina, 
+    disciplina,
     turma,
     professor,
     estudante

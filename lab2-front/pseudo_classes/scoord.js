@@ -7,7 +7,7 @@ const situacao = Object.freeze({
 
 class Disciplina {
 
-    constructor (id, nome, creditos, pre_requisito) {
+    constructor(id, nome, creditos, pre_requisito) {
         this._nome = nome;
         this._id = id;
         this.creditos = creditos;
@@ -22,7 +22,7 @@ class Disciplina {
         return this._nome;
     };
 
-    set_nome (novo_nome) {
+    set_nome(novo_nome) {
         this._nome = novo_nome;
     };
 }
@@ -49,7 +49,7 @@ class Turma {
     set_periodo(novo_periodo) {
         this._periodo = novo_periodo;
     }
-    
+
     get_professor() {
         return this._professor;
     }
@@ -63,8 +63,8 @@ class Turma {
     }
 
     matricular_estudante(estudante) {
-        if ((this._status == situacao.P || this._status == situacao.A) && 
-                !this._estudantes.includes(estudante)) {
+        if ((this._status == situacao.P || this._status == situacao.A) &&
+            !this._estudantes.includes(estudante)) {
             this._estudantes.push(estudante);
         }
     }
@@ -102,7 +102,7 @@ function Professor(matricula, nome, email, cpf, url_foto) {
 }
 
 Professor.prototype = {
-    get_matricula: function() {
+    get_matricula: function () {
         return this._matricula
     },
 
@@ -113,16 +113,16 @@ Professor.prototype = {
         this._nome = novo_nome;
     },
 
-    get_email: function () { 
-        return this._email; 
+    get_email: function () {
+        return this._email;
     },
     set_email: function (novo_email) {
         this._email = novo_email;
     },
 
-    get_cpf: function() { return this._cpf; },
+    get_cpf: function () { return this._cpf; },
 
-    get_url_foto: function() { return this._url_foto; },
+    get_url_foto: function () { return this._url_foto; },
     set_url_foto: function (nova_url) {
         this._url_foto = nova_url;
     },
@@ -137,7 +137,7 @@ Professor.prototype = {
         return this._turmas.filter((elemento) => semestre === elemento.get_periodo());
     },
 
-    get_turmas: function() { return this._turmas; }
+    get_turmas: function () { return this._turmas; }
 }
 
 
@@ -151,14 +151,14 @@ function Estudante(matricula, nome, email, cpf, url_foto) {
 }
 
 Estudante.prototype = {
-    get_nome: function() {
+    get_nome: function () {
         return this._nome;
     },
     set_nome: function (novo_nome) {
         this._nome = novo_nome;
     },
 
-    get_matricula: function() {
+    get_matricula: function () {
         return this._matricula;
     },
 
@@ -169,15 +169,15 @@ Estudante.prototype = {
         this._email = novo_email;
     },
 
-    get_cpf: function() {
+    get_cpf: function () {
         return this._cpf;
     },
 
-    get_url_foto: function() {
+    get_url_foto: function () {
         return this._url_foto;
     },
     set_url_foto: function (nova_url) {
-    this._url_foto = nova_url;
+        this._url_foto = nova_url;
     },
 
     matricula: function (turma) {
@@ -189,7 +189,7 @@ Estudante.prototype = {
     turmas: function (semestre) {
         return this._turmas.filter((elemento) => semestre === elemento.get_periodo());
     },
-    
+
     get_turmas: function () {
         return this._turmas;
     }

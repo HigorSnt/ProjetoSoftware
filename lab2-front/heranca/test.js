@@ -5,14 +5,14 @@ let Professor = require('./scoord').Professor;
 let Estudante = require('./scoord').Estudante;
 
 
-describe('factory Disciplina', function() {
+describe('factory Disciplina', function () {
     let d0;
 
     before(async () => {
         d0 = new Disciplina('prog1', 'Programação 1', 4, []);
     })
 
-    it('deve criar disciplinas distintas a cada invocação', function(){
+    it('deve criar disciplinas distintas a cada invocação', function () {
         d0 = new Disciplina('prog1', 'Programação 1', 4, []);
         d1 = new Disciplina('prog1', 'Programação 1', 4, []);
         d2 = new Disciplina('prog1', 'Programação 1', 4, []);
@@ -21,21 +21,21 @@ describe('factory Disciplina', function() {
         assert.notEqual(d1, d2);
     });
 
-    it('deve reter os dados de inicialização', function(){
+    it('deve reter os dados de inicialização', function () {
         assert.equal('prog1', d0.id());
         assert.equal('Programação 1', d0.get_nome());
         assert.equal(4, d0.creditos);
         assert.deepEqual([], d0.pre_requisitos);
     });
 
-    it('deve permitir atualização de nome', function(){
+    it('deve permitir atualização de nome', function () {
         d0.set_nome('Programação de Computadores I')
         assert.equal('prog1', d0.id());
         assert.equal('Programação de Computadores I', d0.get_nome());
         assert.deepEqual([], d0.pre_requisitos);
     });
 
-    it('não deve permitir atualização de id via set_id', function(){
+    it('não deve permitir atualização de id via set_id', function () {
         assert.throws(function () {
             d0.set_id('outro')
         }, TypeError);
@@ -50,7 +50,7 @@ describe('factory Turma', function () {
     let d1;
     let e1, e2, e3, e4;
 
-    before (async () => {
+    before(async () => {
         d1 = new Disciplina('prog1', 'Programação 1', 4, []);
         t1 = new Turma(d1, '1');
         e1 = new Estudante('11111', 'João', 'joao@yahoo.com', '1234567890', 'https://facebook.com/joao/perfil.jpg');
@@ -59,16 +59,16 @@ describe('factory Turma', function () {
         e4 = new Estudante('15279', 'Ana', 'ana@gmail.com', '45678912337', 'http://linkedin.com/ana/fotinha.jpg');
     });
 
-    it ('deve criar turmas diferentes a cada invocação', function () {
+    it('deve criar turmas diferentes a cada invocação', function () {
         t2 = new Turma(d1, "1");
         t3 = new Turma(d1, "1");
-        
+
         assert.notEqual(t1, t2);
         assert.notEqual(t1, t3);
         assert.notEqual(t2, t3);
     });
 
-    it ('deve reter os dados da inicialização', function(){
+    it('deve reter os dados da inicialização', function () {
         assert.equal(d1, t1.get_disciplina());
         assert.equal('1', t1.get_periodo());
         assert.equal(null, t1.get_professor());
@@ -76,21 +76,21 @@ describe('factory Turma', function () {
         assert.equal('planejada', t1.get_status());
     });
 
-    it ('deve permitir atualização do período e professor', function () {
+    it('deve permitir atualização do período e professor', function () {
         p1 = new Professor('201415145', 'Sei lá', 'seila@computacao.ufcg.edu.br', '32145698703', 'http://linkedin.com/seila/foto_do_perfil.jpg');
-        
+
         t1.set_periodo('2');
         t1.set_professor(p1);
         assert.equal('2', t1.get_periodo());
         assert.equal(p1, t1.get_professor());
     });
 
-    it ('deve ser possível matricular e estudantes e estes são únicos', function () {
+    it('deve ser possível matricular e estudantes e estes são únicos', function () {
         t1.matricular_estudante(e1);
         assert.equal(1, t1.get_estudantes().length);
         t1.matricular_estudante(e1);
         assert.equal(1, t1.get_estudantes().length);
-        
+
         t1.matricular_estudante(e3);
         assert.equal(2, t1.get_estudantes().length);
         t1.matricular_estudante(e3);
@@ -100,7 +100,7 @@ describe('factory Turma', function () {
         assert.equal(3, t1.get_estudantes().length);
     });
 
-    it ('só deve ser possível matricular estudantes se o status da turma for planejada ou ativa', function () {
+    it('só deve ser possível matricular estudantes se o status da turma for planejada ou ativa', function () {
         assert.equal(3, t1.get_estudantes().length);
         t1.set_status('concluida');
         t1.matricular_estudante(e4);
@@ -110,12 +110,12 @@ describe('factory Turma', function () {
         assert.equal(4, t1.get_estudantes().length);
     });
 
-    it ('ao setar um novo status inválido, o mesmo não valerá', function () {
+    it('ao setar um novo status inválido, o mesmo não valerá', function () {
         t1.set_status('em andamento');
         assert.equal('ativa', t1.get_status());
     });
 
-    it ('deve ser possível desmatricular um aluno', function () {
+    it('deve ser possível desmatricular um aluno', function () {
         t1.desmatricular_estudante(e3);
         assert.equal(3, t1.get_estudantes().length);
         t1.desmatricular_estudante(e2);
@@ -159,7 +159,7 @@ describe('factory Professor', function () {
         assert.deepStrictEqual([], p1.get_turmas());
     });
 
-    it('deve ser possível alterar nome, email e url da foto', function() {
+    it('deve ser possível alterar nome, email e url da foto', function () {
         p1.set_nome('Lívia');
         p1.set_email('livia@computacao.ufcg.edu.br');
         p1.set_url_foto('http://linkedin.com/raquel/foto.jpg');
@@ -229,7 +229,7 @@ describe('factory Estudante', function () {
         assert.equal();
     });
 
-    it('deve ser possível alterar nome', function() {
+    it('deve ser possível alterar nome', function () {
         e1.set_nome('Henrique');
         assert.equal('Henrique', e1.get_nome());
     });
