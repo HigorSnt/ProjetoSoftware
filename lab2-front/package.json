@@ -2,7 +2,7 @@
   "name": "lab2-front",
   "version": "1.0.0",
   "description": "",
-  "main": "test.js",
+  "main": "v2/test.js",
   "dependencies": {},
   "devDependencies": {
     "mocha": "^6.2.1"
