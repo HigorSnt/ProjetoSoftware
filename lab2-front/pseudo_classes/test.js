@@ -226,7 +226,6 @@ describe('factory Estudante', function () {
         assert.equal('1234567890', e1.get_cpf());
         assert.equal('https://facebook.com/joao/perfil.jpg', e1.get_url_foto());
         assert.deepStrictEqual([], e1.get_turmas());
-        assert.equal();
     });
 
     it('deve ser possível alterar nome', function () {

@@ -139,24 +139,26 @@ function Professor(matricula, nome, email, cpf, url_foto) {
     Pessoa.call(this, matricula, nome, email, cpf, url_foto);
 }
 
-Professor.prototype = Object.create(Pessoa.prototype)
+Professor.prototype = Object.create(Pessoa.prototype);
+Professor.constructor = Professor;
 Professor.prototype.aloca_turma = function (turma) {
     if (!this._turmas.includes(turma)) {
         this._turmas.push(turma);
     }
-}
+};
 
 
 function Estudante(matricula, nome, email, cpf, url_foto) {
     Pessoa.call(this, matricula, nome, email, cpf, url_foto);
-}
+};
 
-Estudante.prototype = Object.create(Pessoa.prototype)
+Estudante.prototype = Object.create(Pessoa.prototype);
+Estudante.constructor = Estudante;
 Estudante.prototype.matricula = function (turma) {
     if (!this._turmas.includes(turma)) {
         this._turmas.push(turma);
     }
-}
+};
 
 
 exports.Disciplina = Disciplina;
